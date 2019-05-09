@@ -9,6 +9,10 @@
 .. image:: https://img.shields.io/pypi/v/sniffio.svg
    :target: https://pypi.org/project/sniffio
    :alt: Latest PyPi version
+   
+.. image:: https://img.shields.io/conda/vn/conda-forge/sniffio.svg
+   :target: https://anaconda.org/conda-forge/sniffio 
+   :alt: Latest conda-forge version   
 
 .. image:: https://travis-ci.org/python-trio/sniffio.svg?branch=master
    :target: https://travis-ci.org/python-trio/sniffio
@@ -69,4 +73,4 @@ Quickstart
    asyncio.run(print_library())
 
 For more details, including how to add support to new async libraries,
-`please peruse our find manual <https://sniffio.readthedocs.io>`__.
+`please peruse our fine manual <https://sniffio.readthedocs.io>`__.

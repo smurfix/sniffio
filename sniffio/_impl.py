@@ -15,19 +15,22 @@ def current_async_library():
 
     The following libraries are currently supported:
 
-    ===========   ===========  =============
-    Library       Requires     Magic string
-    ===========   ===========  =============
-    **Trio**      Trio v0.6+   ``"trio"``
-    **asyncio**                ``"asyncio"``
-    ===========   ===========  =============
+    ================   ===========  ============================
+    Library             Requires     Magic string
+    ================   ===========  ============================
+    **Trio**            Trio v0.6+   ``"trio"``
+    **Curio**           -            ``"curio"``
+    **asyncio**                      ``"asyncio"``
+    **Trio-asyncio**    v0.8.2+     ``"trio"`` or ``"asyncio"``,
+                                    depending on current mode
+    ================   ===========  ============================
 
     Returns:
       A string like ``"trio"``.
 
     Raises:
-      AsyncLibraryNotFoundError: if called in synchronous context, or if the
-        current async library was not recognized.
+      AsyncLibraryNotFoundError: if called from synchronous context,
+        or if the current async library was not recognized.
 
     Examples:
 
@@ -38,8 +41,10 @@ def current_async_library():
            async def generic_sleep(seconds):
                library = current_async_library()
                if library == "trio":
+                   import trio
                    await trio.sleep(seconds)
                elif library == "asyncio":
+                   import asyncio
                    await asyncio.sleep(seconds)
                # ... and so on ...
                else:
@@ -49,6 +54,13 @@ def current_async_library():
     value = current_async_library_cvar.get()
     if value is not None:
         return value
+
+    # Sniff for curio (for now)
+    if 'curio' in sys.modules:
+        from curio.meta import curio_running
+        if curio_running():
+            return 'curio'
+
     # Need to sniff for asyncio
     if "asyncio" in sys.modules:
         import asyncio
