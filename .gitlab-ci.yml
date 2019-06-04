@@ -11,6 +11,7 @@ before_script:
   - 'dch -v "${CI_COMMIT_TAG}.$(lsb_release -s -c)" -D "$(lsb_release -s -c)" -b "Autobuild on Tag ${CI_COMMIT_TAG}"'
   - 'head debian/changelog'
   - '[ -f "/usr/bin/git" ] && rm /usr/bin/git'
+  - 'echo "deb http://apt-intern.noris.net stretch noris-intern" >/etc/apt/sources.list.d/noris.list'
   - 'apt-get update'
 stretch:
   only:
