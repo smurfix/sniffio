@@ -20,3 +20,12 @@ stretch:
     - "mk-build-deps --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' debian/control"
     - 'dpkg-buildpackage -b -k${CI_GPG_KEYID}'
     - dput -d achmed ../*.changes
+buster:
+  only:
+    - tags
+  image: 'docker-registry.noris.net/oci/debbuilder:stretch'
+  script:
+    - 'dpkg-source -b .'
+    - "mk-build-deps --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' debian/control"
+    - 'dpkg-buildpackage -b -k${CI_GPG_KEYID}'
+    - dput -d achmed ../*.changes
