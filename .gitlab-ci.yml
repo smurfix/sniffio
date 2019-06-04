@@ -8,7 +8,7 @@ variables:
 before_script:
   - 'find ../ -iname "*.changes" -maxdepth 1 -print -delete'
   - 'eval $(ssh-agent)'
-  - 'dch -v "${CI_COMMIT_TAG}-0$(lsb_release -s -c)" -D "$(lsb_release -s -c)" -b "Autobuild on Tag ${CI_COMMIT_TAG}"'
+  - 'dch -v "${CI_COMMIT_TAG}.$(lsb_release -s -c)" -D "$(lsb_release -s -c)" -b "Autobuild on Tag ${CI_COMMIT_TAG}"'
   - 'head debian/changelog'
   - '[ -f "/usr/bin/git" ] && rm /usr/bin/git'
 stretch:
