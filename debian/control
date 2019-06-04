@@ -2,13 +2,15 @@ Source: sniffio
 Maintainer: Matthias Urlichs <matthias@urlichs.de>
 Section: python
 Priority: optional
-Build-Depends: dh-python, python3-setuptools, python3-all, debhelper (>= 9)
+Build-Depends: dh-python, python3-setuptools, python3-all, debhelper (>= 9),
+  python3-contextvars | python3 (>> 3.7),
 Standards-Version: 3.9.6
 Homepage: https://github.com/python-trio/sniffio
 
 Package: python3-sniffio
 Architecture: all
-Depends: ${misc:Depends}, ${python3:Depends}
+Depends: ${misc:Depends}, ${python3:Depends},
+  python3-contextvars | python3 (>> 3.7),
 Description: Sniff out which async library your code is running under
  .. image:: https://img.shields.io/badge/chat-join%20now-blue.svg
     :target: https://gitter.im/python-trio/general

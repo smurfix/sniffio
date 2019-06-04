@@ -11,6 +11,7 @@ before_script:
   - 'dch -v "${CI_COMMIT_TAG}.$(lsb_release -s -c)" -D "$(lsb_release -s -c)" -b "Autobuild on Tag ${CI_COMMIT_TAG}"'
   - 'head debian/changelog'
   - '[ -f "/usr/bin/git" ] && rm /usr/bin/git'
+  - 'apt-get update'
 stretch:
   only:
     - tags
@@ -23,7 +24,7 @@ stretch:
 buster:
   only:
     - tags
-  image: 'docker-registry.noris.net/oci/debbuilder:stretch'
+  image: 'docker-registry.noris.net/oci/debbuilder:buster'
   script:
     - 'dpkg-source -b .'
     - "mk-build-deps --install --tool='apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' debian/control"
