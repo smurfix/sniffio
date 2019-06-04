@@ -1,7 +1,7 @@
 ---
 
 variables:
-  CI_GPG_KEYID: "FCD3FB3E"
+  CI_GPG_KEYID: "B0F6C87CE7E8AE255509CCB6B9C2AEB2A8AFD611"
   DEBEMAIL: "Gitlab CI <gitlabci-noreply@noris.de>"
   USER: "root"
 
