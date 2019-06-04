@@ -44,7 +44,10 @@ def test_asyncio():
 
 
 def test_curio():
-    import curio
+    try:
+        import curio
+    except ImportError:
+        pytest.skip("curio is not installed")
 
     with pytest.raises(AsyncLibraryNotFoundError):
         current_async_library()
