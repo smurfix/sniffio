@@ -58,11 +58,7 @@ def test_asyncio():
         current_async_library()
 
 
-@pytest.mark.skipif(
-    sys.version_info >= (3, 12),
-    reason=
-    "curio broken on 3.12 (https://github.com/python-trio/sniffio/pull/42)",
-)
+@pytest.mark.skip(reason="no curio")
 def test_curio():
     import curio
 
