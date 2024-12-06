@@ -5,6 +5,7 @@ Priority: optional
 Build-Depends: dh-python, python3-setuptools, python3-all, debhelper-compat (= 13),
   pybuild-plugin-pyproject,
   python3-pytest,
+  python3-trio,
 Standards-Version: 3.9.6
 Homepage: https://github.com/python-trio/sniffio
 
